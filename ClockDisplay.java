@@ -28,8 +28,9 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
-    private String suffix = "am";
-    
+    private String suffix;
+    private String amString = "am";
+    private String pmString = "pm";
     /**
      * Constructor for ClockDisplay objects. This constructor 
      * creates a new clock set at 00:00.
@@ -38,6 +39,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
+        suffix = pmString;
         updateDisplay();
     }
 
@@ -95,8 +97,12 @@ public class ClockDisplay
         if(hour == 0){
             hour = 12;
         }
-        if(hour >= 12){
-            suffix = "pm";
+        if(hour == 12){
+            if(suffix.equals(pmString)){
+                suffix = amString;
+            }else{
+                suffix = pmString;
+            }
         }
         
         displayString = hour + ":" + 
