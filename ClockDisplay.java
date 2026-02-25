@@ -28,6 +28,7 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
+    private String suffix;
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -91,13 +92,15 @@ public class ClockDisplay
     private void updateDisplay()
     {
         int hour = hours.getValue();
-        String suffix = "am";
         if(hour >= 12){
             hour = hour - 12;
             suffix = "pm";
-        }
-        if(hour == 0){
+        }else if(hour == 0){
             hour = 12;
+            suffix = "am";
+        }else{
+            hour = hour;
+            suffix = "am";
         }
         
         displayString = hour + ":" + 
